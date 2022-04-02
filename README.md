@@ -1,2 +1,1 @@
-PROJECT Thor
-An ecommerce website.
+THOR Ecommerce website
