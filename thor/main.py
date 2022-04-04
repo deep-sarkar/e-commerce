@@ -1,11 +1,17 @@
-from flask import Flask
+import os
+from flask import Flask, url_for
 from flask_restful import Api
 
 from db.setup import connect_db
 from routes import all_routes
 
 
-app = Flask(__name__)
+TEMPLATE_DIR = os.path.abspath('../templates')
+STATIC_DIR = os.path.abspath('../static')
+
+# app = Flask(__name__) # to make the app run without any
+app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
+
 api = Api(app)
 
 
