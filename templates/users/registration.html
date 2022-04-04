@@ -1,10 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+        background-color: #cfcfb9;
+        margin: auto
+        }
+        .container {
+            min-height: 700px;
+            margin: auto;
+            background-color: #f5f5f5;
+            border-style: solid;
+            border-color: #afacac;
+            width: 50%;
+        }
+
+        header, section, footer {
+            width: auto;
+            min-height: 200px;
+            padding: 0% 3% 0%
+        }
+
+        section {
+            background-color: #fafafb;
+            min-height: 300px;
+            font-size: 1.5em;
+            color: #000
+        }
+
+        header {
+            display: flex;
+            align-content: flex-start;
+            font-family: serif;
+            color: #1c6e54;
+            text-shadow: 0 0 5px #a1cd9c, 0 0 10px #1e1c19, 0 0 15px #2f597e, 0 0 20px #073348;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: stretch;
+            justify-content: space-between;
+            align-items: stretch;
+            font-family: system-ui;
+        }
+        .title-font {
+            font-size: 900%;
+        }
+
+        .contact, .address {
+            width: 45%;
+            margin: 1%;
+            background-color: #f7f7f7
+        }
+
+        .sub-div {
+            margin: 5% 2% 5%;
+            color: #661212;
+            font-weight: 600
+        }
+
+        .address {
+            font-size: 1.5em;
+            color: #009999;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 40px;
+            height: 40px;
+            font-size: 400%;
+            color: #fff;
+            text-shadow: 0 0 5px #a1cd9c, 0 0 10px #1e1c19, 0 0 15px #2f597e, 0 0 20px #073348;
+            font-family: serif;
+            font-weight: bolder;
+            text-decoration: none;
+            margin-left: 20%;
+            margin-top: 2%
+        }
+
+    </style>
 </head>
 <body>
-$END$
+    <div class="container">
+        <header>
+            <span class="title-font">Thor Universe</span>
+        </header>
+        <section>
+            <span>Hi <b>{{ first_name.title() }}</b>,</span>
+            <p>
+                Welcome to Asgard. Be a part of asgard family and enjoy unlimited shopping.
+                Activate your account by clicking the Activate button.
+            </p>
+            <a href="/" class="btn"><span>Enter Asgard</span></a>
+        </section>
+        <footer>
+            <div class="contact">
+                <p class="topic">Contact Us :</p>
+                <div class="sub-div">
+                    <span>Mobile :</span>
+                    <span>+91 **********</span>
+                </div>
+                <div class="sub-div">
+                    <span>Email : </span>
+                    <span>imthorpro@gmail.com</span>
+                </div>
+            </div>
+            <div class="address">
+                <p>Asgard 172/1, Srinivas Industrial Estate, Bannerghatta Road, Bangalore– 76</p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
