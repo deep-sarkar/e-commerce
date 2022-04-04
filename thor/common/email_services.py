@@ -36,7 +36,6 @@ def send_email(email, **kwargs):
 
         # Defining The Message
         email_data = kwargs.get('email_data')
-        print(email_data)
         template = email_data.get('template')
 
         msg = MIMEMultipart('alternative')
