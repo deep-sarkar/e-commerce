@@ -3,7 +3,7 @@ from flask import Flask, url_for
 from flask_restful import Api
 
 from db.setup import connect_db
-from routes import all_routes
+from routes import all_api_routes, all_view_routes
 
 
 TEMPLATE_DIR = os.path.abspath('../templates')
@@ -26,10 +26,15 @@ connect_db()
 
 # routes
 def activate_all_routes():
-    for route in all_routes:
+    for route in all_api_routes:
         end_point = route[0]
         handler = route[1]
         api.add_resource(handler, end_point)
+
+    for route in all_view_routes:
+        end_point = route[0]
+        handler = route[1]
+        app.add_url_rule(end_point, view_func=handler)
 
 
 activate_all_routes()
