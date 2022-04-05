@@ -1,14 +1,27 @@
+import os
+
 from common.email_services import send_email
+from common.token_utils import create_token
 
 
-def send_account_activation_mail(user, token):
+DOMAIN = os.environ.get('DOMAIN')
+
+def send_account_activation_mail(user):
     first_name = user.first_name
     email = user.email
-    activation_url = f'http://127.0.0.1:5000/api/verify/token?token={token}'
+
+    payload = {
+        'id': user.id,
+        'first_name': first_name,
+        'email': email
+    }
+
+    token = create_token(payload)
+    activation_url = f'{DOMAIN}/api/verify/token?token={token}'
     subject = 'Account activation mail'
     email_data = {
         'subject': subject,
-        'template': 'base.html',
+        'template': 'users/registration.html',
         'data': {
             'first_name': first_name,
             'activation_url': activation_url
