@@ -46,7 +46,6 @@ def send_email(email, **kwargs):
         if template:
             data = email_data.get('data', {})
             temp = render_template(template, **data)
-            print(temp)
             temp_data = MIMEText(temp, 'html')
             msg.attach(temp_data)
         else:
