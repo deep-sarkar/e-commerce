@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Account Activation</title>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
 </head>
 <body>
-$END$
+    <div class="container">
+        <header>
+            <span class="title-font">Thor Universe</span>
+        </header>
+
+        <section>
+            {% if data.status_code == 200 %}
+                <span>Hi <b>{{ data.first_name.title() }}</b>,</span>
+                <p>
+                    Welcome to Asgard. Now you are a member of <b>Asgard</b>.
+                  Enjoy free shopping 24*7 with shopping assistant.
+                </p>
+            {% else %}
+                <p><span>Status code : </span> <span style="color:red;">{{ data.status_code }}</span></p>
+                <p><span>Error Message : </span> <span style="color:red;">{{ data.error }}</span></p>
+            {% endif %}
+
+        </section>
+        <footer>
+            <div class="contact">
+                <p class="topic">Contact Us :</p>
+                <div class="sub-div">
+                    <span>Mobile :</span>
+                    <span>+91 **********</span>
+                </div>
+                <div class="sub-div">
+                    <span>Email : </span>
+                    <span>imthorpro@gmail.com</span>
+                </div>
+            </div>
+            <div class="address">
+                <p>Asgard 172/1, Srinivas Industrial Estate, Bannerghatta Road, Bangalore– 76</p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
