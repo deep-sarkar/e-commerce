@@ -7,6 +7,7 @@ from mongoengine import Q
 
 from mongoengine.errors import ValidationError
 
+from common.token_utils import create_token
 from .models import User, Address
 from .utils import send_account_activation_mail
 
@@ -50,3 +51,32 @@ class UserRegisterAPI(Resource):
             return {'error': str(e), 'code': 300}
         return {'message': 'success', 'code': 200}
 
+
+class UserLoginAPI(Resource):
+    def get(self):
+        email = request.args.get('email')
+        password = request.args.get('password')
+
+        if not email or not password:
+            return {'error': 'both email and password required', 'code': 300}
+
+        user = User.objects.get(email=email)
+        if not user:
+            return {'error': 'User with mail does not exists.', 'code': 300}
+
+        if user.password != password:
+            return {'error': 'Password Did not matched.', 'code': 300}
+        if not user.is_active:
+            return {'error': 'Please activate your account first.', 'code': 300}
+        first_name = user.first_name
+        email = user.email
+
+        payload = {
+            'id': user.id,
+            'first_name': first_name,
+            'email': email
+        }
+
+        token = create_token(payload)
+
+        return {'message': 'success', 'token': token, 'code': 200}
