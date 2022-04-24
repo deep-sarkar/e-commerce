@@ -9,7 +9,7 @@ from mongoengine.errors import ValidationError
 
 from common.token_utils import create_token
 from .models import User, Address
-from .utils import send_account_activation_mail
+from .utils import send_account_activation_mail, send_forgot_password_mail
 
 
 class UserRegisterAPI(Resource):
@@ -80,3 +80,21 @@ class UserLoginAPI(Resource):
         token = create_token(payload)
 
         return {'message': 'success', 'token': token, 'code': 200}
+
+
+class ForgetPasswordAPI(Resource):
+    def get(self):
+        email = request.args.get('email')
+
+        if not email :
+            return {'error': 'Please enter email address.', 'code': 300}
+
+        user = User.objects.get(email=email)
+        if not user:
+            return {'error': 'User with mail does not exists.', 'code': 300}
+
+        if not user.is_active:
+            return {'error': 'Please activate your account first.', 'code': 300}
+
+        send_forgot_password_mail(user)
+        return {'message': 'success', 'code': 200}
