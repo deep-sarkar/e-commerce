@@ -7,7 +7,7 @@ from mongoengine import Q
 
 from mongoengine.errors import ValidationError
 
-from common.token_utils import create_token
+from common.token_utils import create_token, token_required
 from .models import User, Address
 from .utils import send_account_activation_mail, send_forgot_password_mail
 

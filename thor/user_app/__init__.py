@@ -4,7 +4,7 @@ from .views import UserVerifyTokenAPI
 api_routes = [
     ('/api/user/register', UserRegisterAPI),
     ('/api/user/login', UserLoginAPI),
-    ('/api/forgot/password', ForgetPasswordAPI),
+    ('/api/user/forgot/password', ForgetPasswordAPI)
 
 ]
 
