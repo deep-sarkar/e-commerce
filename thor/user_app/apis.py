@@ -98,3 +98,26 @@ class ForgetPasswordAPI(Resource):
 
         send_forgot_password_mail(user)
         return {'message': 'success', 'code': 200}
+
+
+class ResetPassword(Resource):
+    @token_required
+    def get(self, *args, **kwargs):
+        user_id = kwargs['id']
+        user = User.objects.get(id=user_id)
+        if not user:
+            return {'error': 'user does not exists', 'code': 404}
+        password = request.args.get('password')
+        cnf_password = request.args.get('cnf_password')
+        if not all([password, cnf_password]):
+            return {'error': 'password and confirm password missing', 'code': 300}
+
+        if password != cnf_password:
+            return {'error': 'password did not matched', 'code': 300}
+
+        try:
+            user.password = password
+            user.save()
+        except ValidationError as e:
+            return e.to_dict()
+        return {'message': 'success', 'code': 200}
