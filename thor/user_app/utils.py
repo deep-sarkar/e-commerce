@@ -45,7 +45,7 @@ def send_forgot_password_mail(user):
     }
 
     token = create_token(payload)
-    reset_password_url = f'{DOMAIN}/api/reset/password?token={token}'
+    reset_password_url = f'{DOMAIN}/api/user/reset/password?token={token}'
     subject = 'Forgot password mail'
     email_data = {
         'subject': subject,
